@@ -1,0 +1,6 @@
+@teste_pratico_crud_api_HostAddress = http://localhost:5103
+
+GET {{teste_pratico_crud_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
