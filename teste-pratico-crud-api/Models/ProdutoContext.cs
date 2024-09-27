@@ -2,12 +2,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace teste_pratico_crud_api.Models;
 
-public class TodoContext : DbContext
+public class ProdutoContext : DbContext
 {
-    public TodoContext(DbContextOptions<TodoContext> options)
+    public ProdutoContext(DbContextOptions<ProdutoContext> options)
         : base(options)
     {
     }
 
-    public DbSet<Produto> TodoItems { get; set; } = null!;
+    public DbSet<Produto> Produtos { get; set; } = null!;
 }
