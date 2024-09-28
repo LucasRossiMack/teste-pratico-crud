@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using teste_pratico_crud_api.Data;
+using teste_pratico_crud_api.Services.ProdutoService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddDbContext<ProdutoContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IProdutosService, ProdutosService>();
 
 var app = builder.Build();
 

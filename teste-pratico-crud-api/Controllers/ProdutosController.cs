@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using teste_pratico_crud_api.Models;
-using teste_pratico_crud_api.Data;
+using teste_pratico_crud_api.Services.ProdutoService;
 
 namespace teste_pratico_crud_api.Controllers
 {
@@ -14,25 +14,25 @@ namespace teste_pratico_crud_api.Controllers
     [ApiController]
     public class ProdutosController : ControllerBase
     {
-        private readonly ProdutoContext _context;
+        private readonly IProdutosService _produtosService;
 
-        public ProdutosController(ProdutoContext context)
+        public ProdutosController(IProdutosService produtosService)
         {
-            _context = context;
+            _produtosService = produtosService;
         }
 
         // GET: api/Produtos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
         {
-            return await _context.Produtos.ToListAsync();
+            return  _produtosService.GetProdutos();
         }
 
         // GET: api/Produtos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> GetProduto(long id)
         {
-            var produto = await _context.Produtos.FindAsync(id);
+            var produto = _produtosService.GetProduto(id);
 
             if (produto == null)
             {
@@ -43,7 +43,6 @@ namespace teste_pratico_crud_api.Controllers
         }
 
         // PUT: api/Produtos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduto(long id, Produto produto)
         {
@@ -52,15 +51,13 @@ namespace teste_pratico_crud_api.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(produto).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                _produtosService.PutProduto(id, produto);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProdutoExists(id))
+                if (!_produtosService.ProdutoExists(id))
                 {
                     return NotFound();
                 }
@@ -74,12 +71,10 @@ namespace teste_pratico_crud_api.Controllers
         }
 
         // POST: api/Produtos
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Produto>> PostProduto(Produto produto)
         {
-            _context.Produtos.Add(produto);
-            await _context.SaveChangesAsync();
+            _produtosService.PostProduto(produto);
 
             return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
         }
@@ -88,21 +83,15 @@ namespace teste_pratico_crud_api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto(long id)
         {
-            var produto = await _context.Produtos.FindAsync(id);
+            var produto = _produtosService.GetProduto(id);
             if (produto == null)
             {
                 return NotFound();
             }
 
-            _context.Produtos.Remove(produto);
-            await _context.SaveChangesAsync();
+            _produtosService.DeleteProduto(produto);
 
             return NoContent();
-        }
-
-        private bool ProdutoExists(long id)
-        {
-            return _context.Produtos.Any(e => e.Id == id);
         }
     }
 }
