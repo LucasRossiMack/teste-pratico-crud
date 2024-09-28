@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using teste_pratico_crud_api.Models;
+using teste_pratico_crud_api.Data;
 
 namespace teste_pratico_crud_api.Controllers
 {
