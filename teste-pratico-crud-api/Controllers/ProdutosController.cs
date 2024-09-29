@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using teste_pratico_crud_api.Models;
+using teste_pratico_crud_api.Services.LerListaProdustosService;
 using teste_pratico_crud_api.Services.ProdutoService;
 
 namespace teste_pratico_crud_api.Controllers
@@ -15,10 +11,12 @@ namespace teste_pratico_crud_api.Controllers
     public class ProdutosController : ControllerBase
     {
         private readonly IProdutosService _produtosService;
+        private readonly ILerListaProdustosService _lerListaProdustosService;
 
-        public ProdutosController(IProdutosService produtosService)
+        public ProdutosController(IProdutosService produtosService, ILerListaProdustosService lerListaProdustosService)
         {
             _produtosService = produtosService;
+            _lerListaProdustosService = lerListaProdustosService;
         }
 
         // GET: api/Produtos
@@ -93,5 +91,20 @@ namespace teste_pratico_crud_api.Controllers
 
             return NoContent();
         }
+
+        // POST: api/Produtos/UploadFile
+        [HttpPost("UploadFile")]
+        public async Task<IActionResult> UploadFile(IFormFile formFile)
+        {
+            string[] linhas =_lerListaProdustosService.ConverterArquivoParaTexto(formFile);
+            List<Produto> listaProdutos = _lerListaProdustosService.ConverterTextoParaProdutos(linhas);
+
+            foreach (var produto in listaProdutos){
+                _produtosService.PostProduto(produto);
+            }
+
+            return Ok(listaProdutos);
+        }
     }
 }
+    
