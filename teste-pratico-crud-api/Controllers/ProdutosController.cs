@@ -21,14 +21,14 @@ namespace teste_pratico_crud_api.Controllers
 
         // GET: api/Produtos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
+        public ActionResult<IEnumerable<Produto>> GetProdutos()
         {
             return  _produtosService.GetProdutos();
         }
 
         // GET: api/Produtos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Produto>> GetProduto(long id)
+        public ActionResult<Produto> GetProduto(long id)
         {
             var produto = _produtosService.GetProduto(id);
 
@@ -42,7 +42,7 @@ namespace teste_pratico_crud_api.Controllers
 
         // PUT: api/Produtos/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduto(long id, Produto produto)
+        public IActionResult PutProduto(long id, Produto produto)
         {
             if (id != produto.Id)
             {
@@ -70,7 +70,7 @@ namespace teste_pratico_crud_api.Controllers
 
         // POST: api/Produtos
         [HttpPost]
-        public async Task<ActionResult<Produto>> PostProduto(Produto produto)
+        public ActionResult<Produto> PostProduto(Produto produto)
         {
             _produtosService.PostProduto(produto);
 
@@ -79,7 +79,7 @@ namespace teste_pratico_crud_api.Controllers
 
         // DELETE: api/Produtos/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduto(long id)
+        public IActionResult DeleteProduto(long id)
         {
             var produto = _produtosService.GetProduto(id);
             if (produto == null)
@@ -94,7 +94,7 @@ namespace teste_pratico_crud_api.Controllers
 
         // POST: api/Produtos/UploadFile
         [HttpPost("UploadFile")]
-        public async Task<IActionResult> UploadFile(IFormFile formFile)
+        public IActionResult UploadFile(IFormFile formFile)
         {
             string[] linhas =_lerListaProdustosService.ConverterArquivoParaTexto(formFile);
             List<Produto> listaProdutos = _lerListaProdustosService.ConverterTextoParaProdutos(linhas);
