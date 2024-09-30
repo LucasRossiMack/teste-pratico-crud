@@ -28,8 +28,8 @@ namespace teste_pratico_crud_api.Services.LerListaProdustosService
             foreach (string linhaProduto in lines)
             {
                 string[] splitProduto = linhaProduto.Split(";"); 
-                string nome = splitProduto[1].ToString();
-                string categoria = splitProduto[2].ToString();
+                string categoria = splitProduto[1].ToString();
+                string nome = splitProduto[2].ToString();
                 string descricao = splitProduto[3].ToString();
                 string preco = splitProduto[4].ToString();
                 string quantidade = regexObj.Replace(splitProduto[5].ToString(), "");
