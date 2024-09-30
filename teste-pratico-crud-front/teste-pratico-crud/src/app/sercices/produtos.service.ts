@@ -12,8 +12,23 @@ export class ProdutosService {
 
   constructor(private httpClient: HttpClient) {
    }
-
    obterProdutos(){
       return this.httpClient.get<Produto[]>(this.url+'Produtos')
+   }
+
+   cadastrarProduto(produto: Produto){
+    return this.httpClient.post<void>(`${this.url}Produtos`,produto)
+   }
+
+   obterProduto(id: number){
+    return this.httpClient.get<Produto>(`${this.url}Produtos/${id}`)
+   }
+   
+   editarProduto(id: number, produto: Produto){
+    return this.httpClient.put<Produto>(`${this.url}Produtos/${id}`+id,produto)
+   }
+   
+   deletarProduto(id: number){
+    return this.httpClient.delete<void>(`${this.url}Produtos/${id}`)
    }
 }
