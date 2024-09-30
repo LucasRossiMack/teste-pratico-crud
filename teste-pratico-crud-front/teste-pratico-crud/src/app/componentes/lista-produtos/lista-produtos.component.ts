@@ -3,11 +3,12 @@ import { Produto } from '../../models/produto.model';
 import { ProdutosService } from '../../sercices/produtos.service';
 import {MatTableModule} from '@angular/material/table';
 import { DeletarProdutoComponent } from '../deletar-produto/deletar-produto.component';
+import { EditarProdutoComponent } from '../editar-produto/editar-produto.component';
 
 @Component({
   selector: 'app-lista-produtos',
   standalone: true,
-  imports: [MatTableModule, DeletarProdutoComponent],
+  imports: [MatTableModule, DeletarProdutoComponent, EditarProdutoComponent],
   templateUrl: './lista-produtos.component.html',
   styleUrl: './lista-produtos.component.css'
 })
@@ -15,7 +16,7 @@ import { DeletarProdutoComponent } from '../deletar-produto/deletar-produto.comp
 export class ListaProdutosComponent {
 
   produtos: Produto[] = [];
-  displayedColumns: string[] = ['id', 'categoria', 'nome', 'preco','descricao','quantidade','deletar'];
+  displayedColumns: string[] = ['id', 'categoria', 'nome', 'preco','descricao','quantidade', 'editar','deletar'];
 
   constructor(private produtosService : ProdutosService){
     this.obterProdutosCadastrados();

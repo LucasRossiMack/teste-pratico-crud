@@ -30,6 +30,11 @@
         <td mat-cell *matCellDef="let produto"> {{produto.quantidade}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef> Editar </th>
+      <td mat-cell *matCellDef="let produto"> <app-editar-produto (atualizaListaEvent)="atualizarLista($event)" [produto]="produto"></app-editar-produto> </td>
+    </ng-container>
+
     <ng-container matColumnDef="deletar">
         <th mat-header-cell *matHeaderCellDef> Deletar </th>
         <td mat-cell *matCellDef="let produto"> <app-deletar-produto (atualizaListaEvent)="atualizarLista($event)" [id]="produto.id"></app-deletar-produto> </td>

@@ -1,0 +1,109 @@
+<div class="container">
+    <h2>Produto</h2>
+        <form #pordutoForm="ngForm" >
+            <div [hidden]="pordutoForm.submitted">
+                <div class="cross-validation">
+                
+                    <div class="container">
+                        <div class="form-group">
+                        <mat-form-field>
+                            <mat-label for="id">ID</mat-label>
+                            <input matInput placeholder="ID" type="text" id="id" name="id" class="form-control" required [(ngModel)]="novoProduto.id" #id="ngModel">
+
+                            <mat-error *ngIf="id.invalid && (id.dirty || id.touched)"
+                                class="alert">
+                                <div *ngIf="id.hasError('required')">
+                                O id do produto é requirido.
+                                </div>
+                            </mat-error>
+                        </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                            <mat-form-field>
+                                <mat-label for="nome">Nome</mat-label>
+                                <input matInput placeholder="Nome" type="text" id="nome" name="nome" class="form-control" required minlength="4" [(ngModel)]="novoProduto.nome" #nome="ngModel">
+                    
+                                <mat-error *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert">
+                                    <div *ngIf="nome.hasError('required')">
+                                    O nome do produto é requirido.
+                                    </div>
+                                    <div *ngIf="nome.hasError('minlength')">
+                                    O nome do produto deve ter 4 caracteres.
+                                    </div>
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                            <mat-form-field>
+                                <mat-label for="categoria">Categoria</mat-label>
+                                <input matInput placeholder="Categoria" type="text" id="categoria" name="categoria" class="form-control" required [(ngModel)]="novoProduto.categoria" #categoria="ngModel">
+                                
+                                <mat-error *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)" class="alert">
+                                    <div *ngIf="categoria.hasError('required')">
+                                    A categoria do produto é requirida.
+                                    </div>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+        
+                <div class="form-group">
+                    <mat-form-field>
+                        <mat-label for="descricao">Descrição</mat-label>
+
+                        <textarea matInput placeholder="Descrição" type="text" id="descricao" name="descricao" class="form-control" required [(ngModel)]="novoProduto.descricao" #descricao="ngModel"></textarea>
+            
+                        <mat-error *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="alert">
+                            <div *ngIf="descricao.hasError('required')">
+                            A descrição do produto é requirida.
+                            </div>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+        
+                <div class="form-group">
+                    <mat-form-field>
+                        <mat-label for="preco">Preço</mat-label>
+                        <input matInput placeholder="Preço" type="text" id="preco" name="preco" class="form-control" required [(ngModel)]="novoProduto.preco" #preco="ngModel">
+            
+                        <mat-error *ngIf="preco.invalid && (preco.dirty || preco.touched)" class="alert">
+                            <div *ngIf="preco.hasError('required')">
+                            O preço do produto é requirido.
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <div class="form-group">
+                    <mat-form-field>
+                        <mat-label for="quantidade">Quantidade</mat-label>
+
+                        <input matInput placeholder="Quantidade"type="text" id="quantidade" name="quantidade" class="form-control" required [(ngModel)]="novoProduto.quantidade" #quantidade="ngModel">
+            
+                        <mat-error *ngIf="quantidade.invalid && (quantidade.dirty || quantidade.touched)" class="alert">
+                            <div *ngIf="quantidade.hasError('required')">
+                            A quantidade do produto é requirida.
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <p>Complete the form to enable the Submit button.</p>
+
+                <button type="submit" [disabled]="pordutoForm.invalid" (click)="enviar()">Submit</button>
+                <button type="button" (click)="pordutoForm.resetForm({})">Reset</button>
+
+                </div>
+
+                    <div class="submitted-message" *ngIf="pordutoForm.submitted">
+                        <p>You've submitted your actor, {{ pordutoForm.value.nome }}!</p>
+                    </div>
+
+                </div>
+
+            </form>    
+  </div>
