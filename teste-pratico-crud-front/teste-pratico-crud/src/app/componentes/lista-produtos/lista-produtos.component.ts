@@ -4,11 +4,12 @@ import { ProdutosService } from '../../sercices/produtos.service';
 import {MatTableModule} from '@angular/material/table';
 import { DeletarProdutoComponent } from '../deletar-produto/deletar-produto.component';
 import { EditarProdutoComponent } from '../editar-produto/editar-produto.component';
+import { CadastrarProdutoComponent } from '../cadastrar-produto/cadastrar-produto.component';
 
 @Component({
   selector: 'app-lista-produtos',
   standalone: true,
-  imports: [MatTableModule, DeletarProdutoComponent, EditarProdutoComponent],
+  imports: [MatTableModule, DeletarProdutoComponent, EditarProdutoComponent, CadastrarProdutoComponent],
   templateUrl: './lista-produtos.component.html',
   styleUrl: './lista-produtos.component.css'
 })
