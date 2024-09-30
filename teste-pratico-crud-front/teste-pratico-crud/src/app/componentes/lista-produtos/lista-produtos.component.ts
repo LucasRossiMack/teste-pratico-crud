@@ -5,11 +5,12 @@ import {MatTableModule} from '@angular/material/table';
 import { DeletarProdutoComponent } from '../deletar-produto/deletar-produto.component';
 import { EditarProdutoComponent } from '../editar-produto/editar-produto.component';
 import { CadastrarProdutoComponent } from '../cadastrar-produto/cadastrar-produto.component';
+import { LeituraArquivoComponent } from '../leitura-arquivo/leitura-arquivo.component';
 
 @Component({
   selector: 'app-lista-produtos',
   standalone: true,
-  imports: [MatTableModule, DeletarProdutoComponent, EditarProdutoComponent, CadastrarProdutoComponent],
+  imports: [MatTableModule, DeletarProdutoComponent, EditarProdutoComponent, CadastrarProdutoComponent, LeituraArquivoComponent],
   templateUrl: './lista-produtos.component.html',
   styleUrl: './lista-produtos.component.css'
 })
