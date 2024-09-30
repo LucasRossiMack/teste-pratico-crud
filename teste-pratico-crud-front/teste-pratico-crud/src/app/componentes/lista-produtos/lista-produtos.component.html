@@ -44,5 +44,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   
-  <app-cadastrar-produto (atualizaListaEvent)="atualizarLista($event)"></app-cadastrar-produto>
-  <app-leitura-arquivo (atualizaListaEvent)="atualizarLista($event)"></app-leitura-arquivo>
+  <div class="container">
+    <app-cadastrar-produto (atualizaListaEvent)="atualizarLista($event)"></app-cadastrar-produto>
+    <app-leitura-arquivo (atualizaListaEvent)="atualizarLista($event)"></app-leitura-arquivo>
+  </div>
